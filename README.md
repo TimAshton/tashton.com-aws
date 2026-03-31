@@ -6,6 +6,8 @@ Code and other assets for tashton.com as hosted on AWS.
 
 ## Architecture
 ### v00
+Deployment means manually uploading the index.html file to the "tashton-static-website" S3 bucket.
+
 ![TAshton.com](architecture-00.png)
 
 [TAshton.com](http://tashton-static-website.s3-website-us-west-2.amazonaws.com/)
