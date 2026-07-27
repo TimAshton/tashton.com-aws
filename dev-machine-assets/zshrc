@@ -6,12 +6,12 @@ git_prompt() {
   repo=$(basename $(git rev-parse --show-toplevel 2>/dev/null)) 2>/dev/null
   branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [[ -n $repo && -n $branch ]]; then
-    echo " ($repo:$branch)"
+    echo " %F{yellow}($repo:$branch)%f"
   fi
 }
 
 setopt PROMPT_SUBST
-PROMPT="%F{green}%n@%m%f %F{75}%~%f $(git_prompt)%# "
+PROMPT="%F{green}%n@%m%f %F{39}%~%f\$(git_prompt)%# "
 
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
