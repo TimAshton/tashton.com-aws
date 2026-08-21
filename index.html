@@ -1,22 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>TAshton.com</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tim Ashton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --surface:  #111111;
+      --border:   #222222;
+      --text:     #e8e8e8;
+      --muted:    #555555;
+      --accent:   #7fff7f;
+      --mono:     'IBM Plex Mono', monospace;
+      --sans:     'Inter', sans-serif;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    /* — header — */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #999;
+      max-width: 480px;
+      margin-bottom: 56px;
+    }
+
+    /* — divider — */
+    .rule {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    /* — projects — */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: color 0.15s;
+      gap: 16px;
+    }
+
+    .link-row:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .link-row:hover {
+      color: var(--accent);
+    }
+
+    .link-row:hover .link-arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    .link-name {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .link-desc {
+      font-size: 13px;
+      color: var(--muted);
+      flex: 1;
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .link-arrow {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--muted);
+      transition: transform 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+
+    /* — footer — */
+    .footer {
+      margin-top: 64px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.25; }
+    }
+
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-text a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .footer-text a:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    @media (max-width: 480px) {
+      .link-desc { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="flex flex-col gap-2 p-8 sm:flex-row sm:items-center sm:gap-6 sm:py-4">
-    <div class="space-y-2 text-center sm:text-left">
-        <div class="space-y-0.5">
-        <p class="text-lg font-semibold text-black">TAshton.com</p>
-        </div>
-        <div>Code Deployed Via GitHub Actions.</div>
-        <a href="https://github.com/TimAshton/tashton.com-aws/" class="border-purple-200 text-purple-600 hover:border-transparent hover:bg-purple-600 hover:text-white active:bg-purple-700">
-        GitHub
-        </a>
+  <div class="wrap">
+
+    <p class="eyebrow">tashton.com</p>
+
+    <h1>Tim<br/><span style="color: var(--text)">Ashton</span></h1>
+
+    <p class="tagline">Full-stack engineer. Building things that ship.<br/>Portland, OR.</p>
+
+    <hr class="rule" />
+
+    <p class="section-label">Personal Projects</p>
+
+    <div class="links">
+      <a class="link-row" href="https://occupy.tashton.com" target="_blank" rel="noopener">
+        <span class="link-name">occupy.tashton.com</span>
+        <span class="link-desc">Two-player territory bluffing game</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a class="link-row" href="https://stickers.tashton.com" target="_blank" rel="noopener">
+        <span class="link-name">stickers.tashton.com</span>
+        <span class="link-desc">YOLO-based sticker field analyzer</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a class="link-row" href="https://github.com/TimAshton/tashton.com-aws" target="_blank" rel="noopener">
+        <span class="link-name">github</span>
+        <span class="link-desc">Code deployed via GitHub Actions</span>
+        <span class="link-arrow">→</span>
+      </a>
     </div>
+
+    <div class="footer">
+      <div class="footer-dot"></div>
+      <p class="footer-text">Deployed on AWS &mdash; <a href="https://github.com/TimAshton/tashton.com-aws">view source</a></p>
     </div>
+
+  </div>
 </body>
 </html>
